@@ -32,8 +32,8 @@ export default {
             const error = new Error(responseData.message || 'Failed to register. Check your credentials' );
             throw error;
         }
-        //const expiresIn = +responseData.expiresIn * 1000; // to be in ms
-        const expiresIn = 5000;
+        const expiresIn = +responseData.expiresIn * 1000; // to be in ms
+        // const expiresIn = 5000;
         const expirationDate = new Date().getTime() + expiresIn; //current time + expiration in ms
         localStorage.setItem('token', responseData.idToken);
         localStorage.setItem('userId', responseData.localId);
