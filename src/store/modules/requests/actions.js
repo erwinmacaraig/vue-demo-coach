@@ -21,8 +21,10 @@ export default {
     },
     async fetchRequests(context){
         const coachId = context.rootGetters.userId;
-        const response = await fetch(`https://vue-http-demo-9ae9e-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json`);
+        const token = context.rootGetters.token;
+        const response = await fetch(`https://vue-http-demo-9ae9e-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json?auth=${token}`);
         const responseData = await response.json();
+        
         if (!response.ok) {
             const error = new Error(responseData.message || 'Faile to fetch requests');
             throw error;
